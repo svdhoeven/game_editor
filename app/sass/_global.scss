@@ -1,0 +1,28 @@
+//Reset all padding and margins from every element
+*{
+  margin: 0;
+  padding: 0;
+}
+
+//Ensure all inputs don't use the default font size
+input, textarea, select, button{
+  font-family: $ffDefault;
+  font-size: $fontSizeSmall;
+}
+
+html{
+  overflow: scroll;
+  overflow-x: hidden;
+  min-height: 100%;
+  height: 100%;
+
+  body{
+    height: 100%;
+    font-size: $fontSizeSmall;
+    font-family: $ffDefault;
+  }
+}
+
+h1, h2, h3, h4, h5{
+  font-family: $ffHeader;
+}
