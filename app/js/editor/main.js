@@ -6,10 +6,13 @@ import {Events} from 'backbone';
 //Collections
 import Tiles from './collections/Tiles';
 import Combos from './collections/Combos';
+import Sprites from './collections/Sprites';
 
 //Views
 import TileList from './views/TileList';
 import ScreenView from './views/ScreenView';
+import TileEditor from './views/TileEditor';
+import SpriteSelect from './views/SpriteSelect';
 
 import '../../sass/main.scss';
 
@@ -35,10 +38,27 @@ window.jQuery = jQuery;
 
         $(window).on('resize', resizeHandler);
 
+        let $tileList = $('.tileList'),
+            $screenView = $('.screen'),
+            $tileEditor = $('.tileEditor'),
+            $spriteSelect = $('.sprite_select_wrapper');
+
         let tiles = new Tiles();
-        let combos = new Combos();
-        new TileList({el: '.tileList', collection: tiles});
-        new ScreenView({el: '.screen', collection: combos});
+        if($tileList.length > 0){
+            new TileList({el: $tileList, collection: tiles});
+        }
+
+        if($screenView.length > 0){
+            new ScreenView({el: $screenView, collection: new Combos()});
+        }
+
+        if($tileEditor.length > 0){
+            new TileEditor({el: $tileEditor, collection: tiles});
+        }
+
+        if($spriteSelect.length > 0){
+            new SpriteSelect({el: $spriteSelect, collection: new Sprites()});
+        }
     };
 
     let resizeHandler = function(){

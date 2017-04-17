@@ -7,7 +7,6 @@ import {Model} from 'backbone';
  */
 const Combo = Model.extend({
     defaults: {
-        id: 0,
         sprite: 0,
         type: 0,
         solid: 0,

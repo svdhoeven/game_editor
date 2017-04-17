@@ -1,5 +1,6 @@
 import {View} from 'backbone';
 import _ from 'underscore';
+import Tile from './../models/Tile';
 
 const TileList = View.extend({
     template: null,
@@ -15,6 +16,15 @@ const TileList = View.extend({
         this.getTiles();
 
         this.listenTo(Backbone, 'refreshTiles', this.getTiles);
+        this.listenTo(Backbone, 'tileSelected', this.tileSelectedHandler);
+    },
+
+    tileSelectedHandler: function(tile){
+        this.$el.find('.selected').removeClass('selected');
+
+        if(tile instanceof Tile){
+            this.$el.find('li[data-id = ' + tile.attributes.id + ']').addClass('selected');
+        }
     },
 
     getTiles: function(){
@@ -34,14 +44,10 @@ const TileList = View.extend({
         let $target = $(e.currentTarget),
             tile = this.currentCollection[$target.data('id') - 1];
 
-        if(tile == undefined){
-            console.log('tile doesnt exist');
+        if(tile == undefined || $target.hasClass('selected')){
+            Backbone.trigger('tileSelected', 'blank');
             return;
         }
-
-        this.$el.find('.selected').removeClass('selected');
-
-        $target.addClass('selected');
 
         Backbone.trigger('tileSelected', tile);
     }

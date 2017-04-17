@@ -1,5 +1,6 @@
 import {View} from 'backbone';
 import _ from 'underscore';
+import Tile from './../models/Tile';
 
 const ScreenView = View.extend({
     template: null,
@@ -52,8 +53,14 @@ const ScreenView = View.extend({
     },
 
     changeTile: function(tile){
-        this.currentTileId = tile.attributes.id;
-        this.currentTileSource = tile.attributes.source;
+        if(tile instanceof Tile) {
+            this.currentTileId = tile.attributes.id;
+            this.currentTileSource = tile.attributes.source;
+        }
+        else{
+            this.currentTileId = 0;
+            this.currentTileSource = 'blank';
+        }
     },
 
     getScreen: function(){

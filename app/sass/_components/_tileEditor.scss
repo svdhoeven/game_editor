@@ -4,8 +4,21 @@
   height: $editorHeight;
   box-sizing: border-box;
 
+  &.hidden{
+
+    .input_wrapper{
+      opacity: 0;
+    }
+  }
+
   .input_wrapper{
     margin-bottom: 10px;
+    opacity: 1;
+    transition: all 0.3s ease;
+
+    .sprite_select_wrapper{
+      display: inline-block;
+    }
 
     label{
       display: inline-block;

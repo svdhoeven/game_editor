@@ -7,7 +7,6 @@ import {Model} from 'backbone';
  */
 const Tile = Model.extend({
     defaults: {
-        id: 0,
         sprite: 0,
         type: 0,
         solid: 0,
