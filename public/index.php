@@ -1,5 +1,7 @@
 <?php
-
+//Force cache clear
+header("Cache-Control: no-cache, must-revalidate");
+header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
 ?>
 <!DOCTYPE html>
 <html>
@@ -8,6 +10,7 @@
   <title>Game</title>
 </head>
 <body>
-  <script type="text/javascript" src="../public/bundles/game.js"></script>
+  <main></main>
+  <script type="text/javascript" src="./bundles/game.js"></script>
 </body>
 </html>

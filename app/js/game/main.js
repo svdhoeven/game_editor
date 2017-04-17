@@ -1,39 +1,81 @@
-import _ from 'underscore';
-import $ from 'jquery';
-import jQuery from 'jquery';
-import {Events} from 'backbone';
+/** Imports */
+//CoreObjects
+import Canvas from './CoreObjects/Canvas';
+import SpriteManager from './CoreObjects/SpriteManager';
 
-//Views
+//GameObjects
+import Screen from './GameObjects/Screen';
 
-//Styling
-import '../../sass/main.scss';
+/** Set global scope variables */
+//Core variables
+var canvas,
+    engine,
+    fps = 30;
 
-window.$ = $;
-window.jQuery = jQuery;
+//GameObjects variables
+var player,
+    currentScreen;
 
-(function ()
-{
-    let setGlobalVariables = function ()
-    {
-        window.App = {};
-        App.events = _.clone(Events);
-    };
+$(init);
 
-    /**
-     * Run after dom is ready
-     */
-    let init = function ()
-    {
-        setGlobalVariables();
+/**
+ * Initializes the Canvas object and starts the game loop
+ *
+ */
+function init(){
+    //Init canvas
+    canvas = new Canvas();
+    canvas.$el.appendTo('main');
+    engine = canvas.$el.get(0).getContext('2d');
 
-        Backbone.history.start();
+    //Init singleton SpriteManager
+    new SpriteManager();
 
-        $(window).on('resize', resizeHandler);
-    };
+    //Init gameObjects
+    // player = new Player(136, 96, 'player');
+    // $(document).on('keydown', e => player.setAction(e));
+    // $(document).on('keyup', e => player.unsetAction(e));
 
-    let resizeHandler = function(){
-        Backbone.trigger('resize');
-    };
+    currentScreen = new Screen(2);
 
-    window.addEventListener('load', init);
-})();
+    //Init game loop
+    setInterval(function() {
+        update(canvas);
+        draw();
+    }, 1000/fps);
+}
+
+function update(canvas){
+
+    // let intersect = false;
+    //
+    // rowLoop:
+    // for(var y = 0; y < map.length; y++) {
+    //     var row = map[y];
+    //     for(var x = 0; x < row.length; x++) {
+    //         let tile = row[x];
+    //
+    //         if(tile.solid){
+    //             intersect = tile.intersect(player);
+    //
+    //             if(intersect){
+    //                 break rowLoop;
+    //             }
+    //         }
+    //     }
+    // }
+    //
+    // player.update(canvas, intersect);
+}
+
+
+function draw(){
+    engine.clearRect(0, 0, canvas.width, canvas.height);
+
+    let combos = currentScreen.getScreen();
+
+    for(let combosIndex = 0; combosIndex < combos.length; combosIndex++){
+        let combo = combos[combosIndex];
+        combo.draw(engine);
+    }
+}
