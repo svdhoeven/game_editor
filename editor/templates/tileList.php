@@ -1,6 +1,7 @@
 <ul class="tileList">
 
     <script id="tpl_tileList" type="text/template">
+        <li class="header">Tiles</li>
 
         <%
         _.each(

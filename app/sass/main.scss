@@ -1,6 +1,12 @@
 @import 'variables';
 
 @import 'global';
+
+//Editor
 @import '_components/editorContainer';
+@import '_components/editorMenu';
 @import '_components/tileList';
+@import '_components/tileEditor';
+
+//Game
 @import '_components/screen';

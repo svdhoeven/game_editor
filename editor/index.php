@@ -11,10 +11,46 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
   <link rel="stylesheet" href="./../public/bundles/final.css" type="text/css"/>
 </head>
 <body>
+  <nav class="editorMenu">
+    <ul>
+      <li>
+        <a href="screen">
+          Screen Editor
+        </a>
+      </li>
+      <li>
+        <a href="tiles">
+          Tiles Editor
+        </a>
+      </li>
+      <li>
+        <a href="sprite">
+          Import Sprites
+        </a>
+      </li>
+    </ul>
+  </nav>
+
   <main class="editorContainer">
     <?php
-    require_once('templates/screen.php');
-    require_once('templates/tileList.php');
+    $url = 'screen';
+
+    if(isset($_GET['_url']) && !empty($_GET['_url'])){
+        $url = htmlspecialchars($_GET['_url']);
+    }
+
+    switch($url){
+        case 'tiles':
+          require_once('templates/tileList.php');
+          require_once('templates/tileEditor.php');
+          break;
+
+        default:
+            require_once('templates/screen.php');
+            require_once('templates/tileList.php');
+        break;
+    }
+
     ?>
   </main>
 

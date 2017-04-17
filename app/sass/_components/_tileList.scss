@@ -1,10 +1,13 @@
 .tileList{
   padding: 20px;
-  background: #ababab;
+  background: $lightGrey;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  width: 160px;
+  align-content: flex-start;
+  width: 200px;
+  height: $editorHeight;
+  box-sizing: border-box;
 
   li{
     width: 32px;
@@ -16,6 +19,15 @@
 
     &.selected{
       border: 1px solid white;
+    }
+
+    &.header{
+      width: 100%;
+      text-align: center;
+      color: $grey;
+      height: auto;
+      font-size: 2em;
+      border-bottom: 1px solid white;
     }
   }
 }

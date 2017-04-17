@@ -1,0 +1,22 @@
+.tileEditor{
+  background: $grey;
+  padding: 20px;
+  height: $editorHeight;
+  box-sizing: border-box;
+
+  .input_wrapper{
+    margin-bottom: 10px;
+
+    label{
+      display: inline-block;
+      width: 200px;
+      padding: 5px;
+      color: $white;
+    }
+
+    input, select{
+      width: 150px;
+      padding: 5px;
+    }
+  }
+}

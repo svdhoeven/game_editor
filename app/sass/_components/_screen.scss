@@ -1,7 +1,7 @@
 .screen{
   border-collapse: collapse;
-  border-top: 1px solid white;
-  border-left: 1px solid white;
+  height: $editorHeight;
+  box-sizing: border-box;
 
   tr{
 
