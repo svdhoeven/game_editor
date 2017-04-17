@@ -1,0 +1,21 @@
+.tileList{
+  padding: 20px;
+  background: #ababab;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  width: 160px;
+
+  li{
+    width: 32px;
+    height: 32px;
+    display: block;
+    margin: 3px;
+    border: 1px solid rgba(0,0,0,0);
+    transition: all 0.1s ease;
+
+    &.selected{
+      border: 1px solid white;
+    }
+  }
+}
