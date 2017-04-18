@@ -5,6 +5,7 @@ import SpriteManager from './CoreObjects/SpriteManager';
 
 //GameObjects
 import Screen from './GameObjects/Screen';
+import Player from './GameObjects/Player';
 
 /** Set global scope variables */
 //Core variables
@@ -32,9 +33,9 @@ function init(){
     new SpriteManager();
 
     //Init gameObjects
-    // player = new Player(136, 96, 'player');
-    // $(document).on('keydown', e => player.setAction(e));
-    // $(document).on('keyup', e => player.unsetAction(e));
+    player = new Player(608, 128, 'player');
+    $(document).on('keydown', e => player.setAction(e));
+    $(document).on('keyup', e => player.unsetAction(e));
 
     currentScreen = new Screen(2);
 
@@ -47,25 +48,31 @@ function init(){
 
 function update(canvas){
 
-    // let intersect = false;
-    //
-    // rowLoop:
-    // for(var y = 0; y < map.length; y++) {
-    //     var row = map[y];
-    //     for(var x = 0; x < row.length; x++) {
-    //         let tile = row[x];
-    //
-    //         if(tile.solid){
-    //             intersect = tile.intersect(player);
-    //
-    //             if(intersect){
-    //                 break rowLoop;
-    //             }
-    //         }
-    //     }
-    // }
-    //
-    // player.update(canvas, intersect);
+    let intersect = false,
+        combos = currentScreen.getScreen(),
+        index = 0,
+        playerPositions = player.getIntersectionVars();
+
+    intersectLoop:
+    for(var y = 0; y < 15; y++) {
+
+        for(var x = 0; x < 20; x++) {
+            if(index >= combos.length){
+                break intersectLoop;
+            }
+
+            let combo = combos[index];
+
+            if(combo.solid == 1 && combo.intersect(player, playerPositions)){
+                intersect = true;
+                break intersectLoop;
+            }
+
+            index++;
+        }
+    }
+
+    player.update(canvas, intersect);
 }
 
 
@@ -78,4 +85,6 @@ function draw(){
         let combo = combos[combosIndex];
         combo.draw(engine);
     }
+
+    player.draw(engine);
 }

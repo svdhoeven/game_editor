@@ -16,22 +16,24 @@ switch($method){
                 for($i = 0; $i < count($combos); $i++){
 
                     $usedTiles = [];
-                    if($combos[$i]['tile'] == 0){
-                        $combos[$i]['source'] = 'blank';
+
+                    if($usedTiles[$combos[$i]['tile']]){
+                        $combos[$i]['source'] = $usedTiles[$combos[$i]['tile']]['source'];
+                        $combos[$i]['solid'] = $usedTiles[$combos[$i]['tile']]['solid'];
                     }
-                    else if($usedTiles[$combos[$i]['tile']]){
-                        $combos[$i]['source'] = $usedTiles[$combos[$i]['tile']];
-                    }
-                    else if($tile = ORM::for_table('tile')->where('id', $combos[$i]['tile'])->find_one()){
+                    else if($combos[$i]['tile'] != 0 && $tile = ORM::for_table('tile')->where('id', $combos[$i]['tile'])->find_one()){
 
                         if($sprite = ORM::for_table('sprite')->where('id', $tile->sprite)->find_one()){
                             $combos[$i]['source'] = $sprite->source;
+                            $combos[$i]['solid'] = $tile->solid;
 
-                            $usedTiles[$combos[$i]['tile']] = $sprite->source;
+                            $usedTiles[$combos[$i]['tile']]['source'] = $sprite->source;
+                            $usedTiles[$combos[$i]['tile']]['solid'] = $tile->solid;
                         }
                     }
                     else{
                         $combos[$i]['source'] = 'blank';
+                        $combos[$i]['solid'] = 0;
                     }
                 }
 

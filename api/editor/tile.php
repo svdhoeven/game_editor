@@ -29,15 +29,14 @@ switch($method){
 
     case 'POST':
         $body = json_decode(file_get_contents("php://input"));
-        var_dump($body);
 
-        if(isset($body->sprite) && !empty($body->sprite)){
+        if(isset($body->sprite) && !empty($body->sprite) && isset($body->solid)){
 
             $tile = ORM::for_table('tile')->create();
 
             $tile->sprite = $body->sprite;
             $tile->type = 0;
-            $tile->solid = 0;
+            $tile->solid = htmlspecialchars($body->solid);
 
             if($tile->save()){
                 $response = $tile;
@@ -58,11 +57,12 @@ switch($method){
     case 'PUT':
         $body = json_decode(file_get_contents("php://input"));
 
-        if(isset($body->sprite) && !empty($body->sprite) && isset($body->id) && !empty($body->id)){
+        if(isset($body->sprite) && !empty($body->sprite) && isset($body->id) && !empty($body->id) && isset($body->solid)){
 
             if($tile = ORM::for_table('tile')->where('id', $body->id)->find_one()){
 
                 $tile->sprite = htmlspecialchars($body->sprite);
+                $tile->solid = htmlspecialchars($body->solid);
 
                 if($tile->save()){
                     $response = $tile;

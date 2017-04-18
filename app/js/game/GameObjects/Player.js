@@ -1,19 +1,19 @@
 import GameObject from '../CoreObjects/GameObject';
 
 class Player extends GameObject{
-    constructor(x, y, texture){
-        super(x, y, texture, 0, 0, 16, 16);
+    constructor(x, y, sprite){
+        super(x, y, sprite, 0, 0, 32, 32);
 
         this.defineActions();
 
         this.direction = 2;
         this.action = false;
-        this.speedX = 3;
-        this.speedY = 3;
+        this.speedX = 4;
+        this.speedY = 4;
 
         this.animationFrame = 0;
         this.animationMaxFrames = 3;
-        this.fps = 6;
+        this.fps = 5;
         this.frame = 0;
     }
 
@@ -65,16 +65,17 @@ class Player extends GameObject{
 
     update(canvas, intersect){
         if(this.action == this.actions.walking){
-            this.sourceY = this.direction * 16;
+            this.sourceY = this.direction * 32;
 
             if(this.frame % this.fps == 0){
                 this.animationFrame = this.animationFrame < this.animationMaxFrames ? this.animationFrame + 1 : 0;
-                this.sourceX = this.animationFrame * 16;
+                this.sourceX = this.animationFrame * 32;
             }
 
             this.frame++;
 
             if(intersect) {
+                console.log('intersect');
                 return;
             }
 
@@ -124,6 +125,34 @@ class Player extends GameObject{
 
     draw(engine){
         super.draw(engine);
+    }
+
+    getIntersectionVars(){
+        var speedX = 0,
+            speedY = 0;
+
+        switch(this.direction){
+            case 0:
+                speedY = this.speedY * -1;
+                break;
+
+            case 1:
+                speedX = this.speedX;
+                break;
+
+            case 2:
+                speedY = this.speedY;
+                break;
+
+            case 3:
+                speedX = this.speedX * -1;
+                break;
+        }
+
+        return {
+            x: this.x + speedX,
+            y: this.y + speedY
+        };
     }
 }
 

@@ -25,6 +25,11 @@
     </div>
 
     <div class="input_wrapper">
+        <label for="input_solid">This tile is solid: </label>
+        <input type="checkbox" id="input_solid" name="input_solid" value="1"/>
+    </div>
+
+    <div class="input_wrapper">
         <label for="input_submit">Create new tile: </label>
         <input type="submit" id="input_submit" name="input_submit" value="Create tile"/>
     </div>
