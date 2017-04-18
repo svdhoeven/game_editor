@@ -1,0 +1,36 @@
+.spriteEditor{
+  background: $grey;
+  padding: 20px;
+  height: $editorHeight;
+  box-sizing: border-box;
+
+  .error{
+    color: red;
+    background: white;
+    margin: 5px;
+  }
+
+  .input_wrapper{
+
+    &.hidden{
+      display: none;
+    }
+
+    label{
+      width: 200px;
+      padding: 5px;
+      color: $white;
+    }
+
+    input, select{
+      width: 150px;
+      padding: 5px;
+
+      &#input_file{
+        padding: 5px 0;
+        width: 300px;
+        display: block;
+      }
+    }
+  }
+}

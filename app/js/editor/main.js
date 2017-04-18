@@ -13,6 +13,7 @@ import TileList from './views/TileList';
 import ScreenView from './views/ScreenView';
 import TileEditor from './views/TileEditor';
 import SpriteSelect from './views/SpriteSelect';
+import SpriteList from './views/SpriteList';
 
 import '../../sass/main.scss';
 
@@ -41,9 +42,12 @@ window.jQuery = jQuery;
         let $tileList = $('.tileList'),
             $screenView = $('.screen'),
             $tileEditor = $('.tileEditor'),
-            $spriteSelect = $('.sprite_select_wrapper');
+            $spriteSelect = $('.sprite_select_wrapper'),
+            $spriteList = $('.spriteList');
 
-        let tiles = new Tiles();
+        let tiles = new Tiles(),
+            sprites = new Sprites();
+
         if($tileList.length > 0){
             new TileList({el: $tileList, collection: tiles});
         }
@@ -57,7 +61,11 @@ window.jQuery = jQuery;
         }
 
         if($spriteSelect.length > 0){
-            new SpriteSelect({el: $spriteSelect, collection: new Sprites()});
+            new SpriteSelect({el: $spriteSelect, collection: sprites});
+        }
+
+        if($spriteList.length > 0){
+            new SpriteList({el: $spriteList, collection: sprites});
         }
     };
 

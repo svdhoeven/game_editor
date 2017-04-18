@@ -45,6 +45,11 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
           require_once('templates/tileEditor.php');
           break;
 
+        case 'sprite':
+          require_once('templates/spriteList.php');
+          require_once('templates/spriteEditor.php');
+            break;
+
         default:
             require_once('templates/screen.php');
             require_once('templates/tileList.php');

@@ -6,7 +6,7 @@
 
         <div class="sprite_select_wrapper">
             <script id="tpl_spriteSelect" type="text/template">
-                <select id="input_sprite">
+                <select id="input_sprite" required>
                     <option disabled selected value="default">Select a sprite</option>
                     <%
                     _.each(

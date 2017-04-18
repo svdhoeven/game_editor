@@ -1,4 +1,4 @@
-.tileList{
+.spriteList{
   padding: 20px;
   background: $lightGrey;
   display: flex;
@@ -10,16 +10,25 @@
   box-sizing: border-box;
 
   li{
-    width: 32px;
-    height: 32px;
+    width: calc(50% - 6px);
+    box-sizing: border-box;
     display: block;
     margin: 3px;
     border: 1px solid rgba(0,0,0,0);
     transition: all 0.1s ease;
 
-    img{
-      width: 32px;
-      height: 32px;
+    figure{
+      width: 100%;
+      text-align: center;
+
+      img{
+        width: 32px;
+        height: 32px;
+      }
+
+      figcaption{
+
+      }
     }
 
     &.selected{
