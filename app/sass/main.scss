@@ -2,6 +2,8 @@
 
 @import 'global';
 
+@import 'animations';
+
 //Editor
 @import '_components/editorContainer';
 @import '_components/editorMenu';
@@ -9,6 +11,7 @@
 @import '_components/tileEditor';
 @import '_components/spriteList';
 @import '_components/spriteEditor';
+@import '_components/screenTable';
 
 //Game
 @import '_components/screen';

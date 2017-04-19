@@ -1,0 +1,27 @@
+.screenTable{
+  box-sizing: border-box;
+  background: $grey;
+  width: 640px;
+
+  tr{
+
+    td{
+      border: 1px solid $lightGrey;
+      background: black;
+      color: white;
+      font-size: 0.7em;
+      margin: 2px;
+      padding: 5px;
+      text-align: center;
+
+      &.created{
+        border: 1px solid $lightGrey;
+        background: #1d1d1d;
+      }
+
+      &.current{
+        animation: selected 1s ease infinite;
+      }
+    }
+  }
+}

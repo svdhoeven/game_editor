@@ -7,6 +7,7 @@ import {Events} from 'backbone';
 import Tiles from './collections/Tiles';
 import Combos from './collections/Combos';
 import Sprites from './collections/Sprites';
+import Screens from './collections/Screens';
 
 //Views
 import TileList from './views/TileList';
@@ -14,6 +15,7 @@ import ScreenView from './views/ScreenView';
 import TileEditor from './views/TileEditor';
 import SpriteSelect from './views/SpriteSelect';
 import SpriteList from './views/SpriteList';
+import ScreenTable from './views/ScreenTable';
 
 import '../../sass/main.scss';
 
@@ -43,7 +45,8 @@ window.jQuery = jQuery;
             $screenView = $('.screen'),
             $tileEditor = $('.tileEditor'),
             $spriteSelect = $('.sprite_select_wrapper'),
-            $spriteList = $('.spriteList');
+            $spriteList = $('.spriteList'),
+            $screenTable = $('.screenTable');
 
         let tiles = new Tiles(),
             sprites = new Sprites();
@@ -66,6 +69,10 @@ window.jQuery = jQuery;
 
         if($spriteList.length > 0){
             new SpriteList({el: $spriteList, collection: sprites});
+        }
+
+        if($screenTable.length > 0){
+            new ScreenTable({el: $screenTable, collection: new Screens()});
         }
     };
 

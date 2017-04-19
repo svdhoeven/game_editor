@@ -14,8 +14,6 @@ const ScreenView = View.extend({
     initialize: function(){
         this.template = _.template(this.$('#tpl_screen').html());
 
-        this.getScreen();
-
         //todo bepaal welk scherm dit is van welke map
 
         this.listenTo(Backbone, 'refreshScreen', this.getScreen);
@@ -63,10 +61,10 @@ const ScreenView = View.extend({
         }
     },
 
-    getScreen: function(){
+    getScreen: function(screen){
         this.collection.fetch({
             reset: true,
-            data: $.param({screen: 2}),
+            data: $.param({screen: screen}),
             success: (collection) => this.getScreenSuccessHandler(collection),
         });
     },

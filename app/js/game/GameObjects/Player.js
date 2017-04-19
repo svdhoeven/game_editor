@@ -75,7 +75,6 @@ class Player extends GameObject{
             this.frame++;
 
             if(intersect) {
-                console.log('intersect');
                 return;
             }
 

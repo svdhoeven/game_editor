@@ -7,6 +7,54 @@ $response = "";
 header('Content-Type: application/json');
 
 switch($method){
+
+    case 'GET':
+        //If id, we want just one screen
+        if(isset($_GET['id']) && !empty($_GET['id'])){
+            $id = htmlspecialchars($_GET['id']);
+
+            if($screen = ORM::for_table('screen')->where('id', $id)->find_array()){
+                $response = $screen;
+                http_response_code(200);
+            }
+            else{
+                $response = "Screen can't be found!";
+                http_response_code(400);
+            }
+        }
+        else if(isset($_GET['map']) && !empty($_GET['map']) && isset($_GET['x']) && isset($_GET['y'])){
+            $x = htmlspecialchars($_GET['x']);
+            $y = htmlspecialchars($_GET['y']);
+            $map = htmlspecialchars($_GET['map']);
+
+            if($screen = ORM::for_table('screen')->where('map', $map)->where('x', $x)->where('y', $y)->find_array()){
+                $response = $screen;
+                http_response_code(200);
+            }
+            else{
+                $response = "Screen can't be found!";
+                http_response_code(400);
+            }
+        }
+        //Else a list
+        else if(isset($_GET['map']) && !empty($_GET['map'])){
+            $map = htmlspecialchars($_GET['map']);
+
+            if($screens = ORM::for_table('screen')->where('map', $map)->order_by_asc('y')->order_by_asc('x')->find_array()){
+                $response = $screens;
+                http_response_code(200);
+            }
+            else{
+                $response = 'Screens in this map not found';
+                http_response_code(400);
+            }
+        }
+        else{
+            $response = "missing params";
+            http_response_code(400);
+        }
+        break;
+
     case 'POST':
         $body = json_decode(file_get_contents("php://input"));
 
@@ -38,6 +86,7 @@ switch($method){
                     }
                 }
 
+                $response = $screen->as_array();
                 http_response_code(201);
             }
             else{

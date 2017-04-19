@@ -1,0 +1,11 @@
+@keyframes selected{
+  0%{
+    border: 1px solid #7f0000;
+  }
+  50%{
+    border: 1px solid red;//rgba(255,255,255,0);
+  }
+  100%{
+    border: 1px solid #7f0000;
+  }
+}

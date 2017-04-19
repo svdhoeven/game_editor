@@ -53,6 +53,7 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
         default:
             require_once('templates/screen.php');
             require_once('templates/tileList.php');
+            require_once('templates/screenTable.php');
         break;
     }
 
