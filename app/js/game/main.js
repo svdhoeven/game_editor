@@ -43,7 +43,7 @@ function init(){
     setInterval(function() {
         update(canvas);
         draw();
-    }, 1000/fps);
+    }, 2000/fps);
 }
 
 function update(canvas){

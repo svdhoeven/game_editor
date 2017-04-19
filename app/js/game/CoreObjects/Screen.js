@@ -2,9 +2,13 @@ import Combo from './../GameObjects/Combo';
 
 class Screen{
 
-    constructor(screenId){
+    constructor(screenId, x, y){
         this.combos = [];
         this.screenId = screenId;
+        this.originX = x;
+        this.originY = y;
+        this.x = x * 640;
+        this.y = y * 480;
         this.ready = false;
     }
 
@@ -20,13 +24,22 @@ class Screen{
         this.combos = [];
         for(let i = 0; i < data.length; i++){
             let comboData = data[i];
-            this.combos.push(new Combo(comboData.x * 32, comboData.y * 32, comboData.source, comboData.solid));
+            this.combos.push(new Combo(comboData.x * 32, comboData.y * 32, comboData.source, comboData.solid, this.x, this.y));
         }
 
         this.ready = true;
     }
 
-    update(player){
+    update(speedX, speedY){
+        for(let combo of this.combos){
+            combo.update(this.x, this.y);
+        }
+
+        this.x += speedX;
+        this.y += speedY;
+    }
+
+    checkIntersection(player){
         let intersect = false,
             combos = this.combos,
             index = 0,
