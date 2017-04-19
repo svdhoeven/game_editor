@@ -22,6 +22,7 @@ class Player extends GameObject{
             none: 0,
             walking: 1,
             intersect: 2,
+            transition: 3,
         }
     }
 
@@ -60,11 +61,13 @@ class Player extends GameObject{
     }
 
     unsetAction(e){
+        if(this.action == this.actions.transition) return;
+
         this.action = this.actions.none;
     }
 
     update(canvas, intersect){
-        if(this.action == this.actions.walking){
+        if(this.action == (this.actions.walking || this.actions.transition)){
             this.sourceY = this.direction * 32;
 
             if(this.frame % this.fps == 0){
@@ -73,8 +76,12 @@ class Player extends GameObject{
             }
 
             this.frame++;
+        }
 
-            if(intersect) {
+        if(this.action == this.actions.walking){
+
+
+            if(intersect || this.action == this.actions.intersect) {
                 return;
             }
 
@@ -85,6 +92,7 @@ class Player extends GameObject{
                     }
                     else{
                         this.y = 0;
+                        this.action = this.actions.transition;
                     }
 
                     break;
@@ -95,6 +103,7 @@ class Player extends GameObject{
                     }
                     else {
                         this.x = canvas.width - this.width;
+                        this.action = this.actions.transition;
                     }
 
                     break;
@@ -105,6 +114,7 @@ class Player extends GameObject{
                     }
                     else {
                         this.y = canvas.height - this.height;
+                        this.action = this.actions.transition;
                     }
 
                     break;
@@ -115,6 +125,7 @@ class Player extends GameObject{
                     }
                     else {
                         this.x = 0;
+                        this.action = this.actions.transition;
                     }
 
                     break;
@@ -152,6 +163,11 @@ class Player extends GameObject{
             x: this.x + speedX,
             y: this.y + speedY
         };
+    }
+
+    transition(transitionSpeedX, transitionSpeedY){
+        this.x += transitionSpeedX;
+        this.y += transitionSpeedY;
     }
 }
 

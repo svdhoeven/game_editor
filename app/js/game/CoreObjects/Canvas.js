@@ -1,7 +1,7 @@
 class Canvas{
     constructor(){
-        this.width = 1280;
-        this.height = 960;
+        this.width = 640;
+        this.height = 480;
 
         this.$el = $("<canvas width='" + this.width +
             "' height='" + this.height + "'></canvas>").css({
