@@ -23,7 +23,7 @@
     }
 
     &.selected{
-      border: 1px solid white;
+      animation: selected 0.5s ease infinite;
     }
 
     &.header{

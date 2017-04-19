@@ -2,9 +2,9 @@
 //CoreObjects
 import Canvas from './CoreObjects/Canvas';
 import SpriteManager from './CoreObjects/SpriteManager';
+import Map from './CoreObjects/Map';
 
 //GameObjects
-import Screen from './GameObjects/Screen';
 import Player from './GameObjects/Player';
 
 /** Set global scope variables */
@@ -15,7 +15,7 @@ var canvas,
 
 //GameObjects variables
 var player,
-    currentScreen;
+    map;
 
 $(init);
 
@@ -37,7 +37,7 @@ function init(){
     $(document).on('keydown', e => player.setAction(e));
     $(document).on('keyup', e => player.unsetAction(e));
 
-    currentScreen = new Screen(2);
+    map = new Map(1);
 
     //Init game loop
     setInterval(function() {
@@ -47,29 +47,10 @@ function init(){
 }
 
 function update(canvas){
+    let intersect = false;
 
-    let intersect = false,
-        combos = currentScreen.getScreen(),
-        index = 0,
-        playerPositions = player.getIntersectionVars();
-
-    intersectLoop:
-    for(var y = 0; y < 15; y++) {
-
-        for(var x = 0; x < 20; x++) {
-            if(index >= combos.length){
-                break intersectLoop;
-            }
-
-            let combo = combos[index];
-
-            if(combo.solid == 1 && combo.intersect(player, playerPositions)){
-                intersect = true;
-                break intersectLoop;
-            }
-
-            index++;
-        }
+    if(map.ready){
+        intersect = map.update(player);
     }
 
     player.update(canvas, intersect);
@@ -79,11 +60,8 @@ function update(canvas){
 function draw(){
     engine.clearRect(0, 0, canvas.width, canvas.height);
 
-    let combos = currentScreen.getScreen();
-
-    for(let combosIndex = 0; combosIndex < combos.length; combosIndex++){
-        let combo = combos[combosIndex];
-        combo.draw(engine);
+    if(map.ready){
+        map.draw(engine);
     }
 
     player.draw(engine);

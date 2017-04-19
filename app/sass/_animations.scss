@@ -1,12 +1,15 @@
 @keyframes selected{
   0%{
-    border: 1px solid #7f0000;
+    border: 1px solid $lightGrey;
   }
-  50%{
-    border: 1px solid red;//rgba(255,255,255,0);
+  40%{
+    border: 1px solid white;
+  }
+  60%{
+    border: 1px solid white;
   }
   100%{
-    border: 1px solid #7f0000;
+    border: 1px solid $lightGrey;
   }
 }
 
