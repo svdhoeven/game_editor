@@ -6,7 +6,6 @@ const ScreenTable = View.extend({
     currentX: 0,
     currentY: 0,
     currentMap: 1,
-    busy: false,
 
     events: {
         'click td': 'clickHandler'
@@ -79,6 +78,7 @@ const ScreenTable = View.extend({
     },
 
     postScreen: function(){
+        Backbone.trigger('showLoader');
         this.collection.create(
             {
                 map: this.currentMap,
@@ -92,14 +92,12 @@ const ScreenTable = View.extend({
     },
 
     postScreenSuccessHandler: function(response){
+        Backbone.trigger('hideLoader');
+
         Backbone.trigger('refreshScreen', response.responseJSON.id);
     },
 
     clickHandler: function(e){
-        if(this.busy){
-            return;
-        }
-
         let $target = $(e.currentTarget),
             x = $target.data('x'),
             y = $target.data('y');
@@ -116,7 +114,7 @@ const ScreenTable = View.extend({
 
     selectScreen: function($target){
         this.$el.find('.current').removeClass('current');
-        $target.addClass('current');
+        $target.addClass('current').addClass('created');
 
         this.getScreen();
     }

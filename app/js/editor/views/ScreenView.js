@@ -14,8 +14,6 @@ const ScreenView = View.extend({
     initialize: function(){
         this.template = _.template(this.$('#tpl_screen').html());
 
-        //todo bepaal welk scherm dit is van welke map
-
         this.listenTo(Backbone, 'refreshScreen', this.getScreen);
         this.listenTo(Backbone, 'tileSelected', this.changeTile);
     },
@@ -29,6 +27,7 @@ const ScreenView = View.extend({
         }
 
         let combo = this.collection.get(comboId);
+
         combo.save(
             {
                 tile: this.currentTileId,
@@ -38,8 +37,6 @@ const ScreenView = View.extend({
                 success: this.updateComboSuccessHandler.bind(this)
             }
         );
-
-        //$target.find('img').attr('src', '../public/img/sprites/' + this.currentTile.attributes.source + '.png');
     },
 
     updateComboSuccessHandler: function(comboData){

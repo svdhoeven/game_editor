@@ -16,6 +16,7 @@ import TileEditor from './views/TileEditor';
 import SpriteSelect from './views/SpriteSelect';
 import SpriteList from './views/SpriteList';
 import ScreenTable from './views/ScreenTable';
+import Loader from './views/Loader';
 
 import '../../sass/main.scss';
 
@@ -46,7 +47,8 @@ window.jQuery = jQuery;
             $tileEditor = $('.tileEditor'),
             $spriteSelect = $('.sprite_select_wrapper'),
             $spriteList = $('.spriteList'),
-            $screenTable = $('.screenTable');
+            $screenTable = $('.screenTable'),
+            $loader = $('#loader');
 
         let tiles = new Tiles(),
             sprites = new Sprites();
@@ -73,6 +75,10 @@ window.jQuery = jQuery;
 
         if($screenTable.length > 0){
             new ScreenTable({el: $screenTable, collection: new Screens()});
+        }
+
+        if($loader.length > 0){
+            new Loader({el: $loader});
         }
     };
 

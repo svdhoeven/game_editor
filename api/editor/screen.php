@@ -73,12 +73,13 @@ switch($method){
             $screen->map = $map;
 
             if($screen->save()){
+                $screenId = $screen->id;
 
                 for($y = 0; $y < 15; $y++){
 
                     for($x = 0; $x < 20; $x++) {
                         $combo = ORM::for_table('combo')->create();
-                        $combo->screen = $screen->id;
+                        $combo->screen = $screenId;
                         $combo->x = $x;
                         $combo->y = $y;
                         $combo->tile = 0;

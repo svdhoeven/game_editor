@@ -31,6 +31,9 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
     </ul>
   </nav>
 
+  <div id="loader" class="hidden">
+    <img src="./../public/img/loader.png"/>
+  </div>
   <main class="editorContainer">
     <?php
     $url = 'screen';
