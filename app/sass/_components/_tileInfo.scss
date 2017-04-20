@@ -1,0 +1,31 @@
+.tileInfo{
+  width: 180px;
+  padding: 10px;
+  margin: 10px 0 0 10px;
+  background: $lightGrey;
+
+  img{
+    width: 32px;
+    height: 32px;
+    border: solid 5px $grey;
+    margin: 0 auto 10px;
+    display: block;
+  }
+
+  .info_wrapper{
+    width: 100%;
+    margin: 10px 0 5px 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid $grey;
+
+    .label{
+      display: inline-block;
+      width: 60%;
+    }
+
+    .value{
+      display: inline-block;
+      width: 30%;
+    }
+  }
+}

@@ -70,6 +70,13 @@ const ScreenTable = View.extend({
     getScreenSuccessHandler: function(collection){
         if(collection.length > 0){
             Backbone.trigger('refreshScreen', collection.models[0].attributes.id);
+            Backbone.trigger(
+                'refreshScreenInfo',
+                {
+                    x: collection.models[0].attributes.x,
+                    y: collection.models[0].attributes.y
+                }
+            );
         }
     },
 
@@ -95,6 +102,7 @@ const ScreenTable = View.extend({
         Backbone.trigger('hideLoader');
 
         Backbone.trigger('refreshScreen', response.responseJSON.id);
+        Backbone.trigger('refreshScreenInfo', {x: response.responseJSON.x, y: response.responseJSON.y});
     },
 
     clickHandler: function(e){

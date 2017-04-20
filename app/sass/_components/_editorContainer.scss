@@ -1,7 +1,8 @@
 .editorContainer{
-  background: black;
+  background: $grey;
   display: flex;
-  padding: 50px;
-  width: 840px;
+  padding: 10px;
+  width: 850px;
   flex-wrap: wrap;
+  margin: 50px;
 }

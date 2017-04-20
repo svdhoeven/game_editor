@@ -1,8 +1,9 @@
 .editorMenu{
-  background: black;
+  background: $grey;
 
   ul{
     display: flex;
+    list-style-type: none;
 
     li{
       background: white;

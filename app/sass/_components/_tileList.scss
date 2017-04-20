@@ -1,5 +1,5 @@
 .tileList{
-  padding: 20px;
+  padding: 0 20px;
   background: $lightGrey;
   display: flex;
   flex-wrap: wrap;
@@ -16,6 +16,15 @@
     margin: 3px;
     border: 1px solid rgba(0,0,0,0);
     transition: all 0.1s ease;
+
+    &.new_tile{
+      text-align: center;
+      line-height: 32px;
+      vertical-align: middle;
+      font-size: 1.5em;
+      background: $grey;
+      color: $lightGrey;
+    }
 
     img{
       width: 32px;
