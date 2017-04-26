@@ -8,9 +8,10 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
 <head lang="en">
   <meta charset="UTF-8">
   <title>Game</title>
+  <link rel="stylesheet" href="./bundles/final.css" type="text/css"/>
 </head>
 <body>
-  <main></main>
+  <main class="gameContainer"></main>
   <script type="text/javascript" src="./bundles/game.js"></script>
 </body>
 </html>

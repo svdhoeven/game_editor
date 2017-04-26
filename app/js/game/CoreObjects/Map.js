@@ -44,8 +44,6 @@ class Map{
             y = parseInt(this.currentScreen.originY),
             potentialScreens = [];
 
-
-
         if(this.screens.hasOwnProperty(y.toString())){
 
             if(this.screens[y].hasOwnProperty((x - 1).toString())){

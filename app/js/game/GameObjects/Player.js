@@ -8,8 +8,8 @@ class Player extends GameObject{
 
         this.direction = 2;
         this.action = false;
-        this.speedX = 4;
-        this.speedY = 4;
+        this.speedX = 16;
+        this.speedY = 16;
 
         this.animationFrame = 0;
         this.animationMaxFrames = 3;
